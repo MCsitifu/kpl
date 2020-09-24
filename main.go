@@ -1,10 +1,9 @@
 package main
 
-import "github.com/astaxie/beego"
 
 import (
-	_ "hallo/routers"
 	"github.com/astaxie/beego"
+	_ "hallo/routers"
 )
 
 func main() {
