@@ -31,35 +31,54 @@ type MainController struct {
 //	c.TplName = "index.tpl"
 //}
 //
-////该方法用于处理post请求
-//func (c *MainController) post(){
+//该方法用于处理post请求
+//func (c *MainController) Post(){
 //	name :=c.Ctx.Request.FormValue("name")
 //	age := c.Ctx.Request.FormValue(("age"))
-//	sex := c.Ctx.Request.FormValue(("ase"))
-//
-//	if name != "admin" && age !="21"&&sex!="male"{
+//	sex := c.Ctx.Request.e !="21"&&sex!="male"{
 //		c.Ctx.ResponseWriter.Write([]byte("数据校验失败"))
 //		return
-//	}
+//	}P
 //	c.Ctx.WriteString("数据校验成功")
 //}
-//该方法用于处理post类型的请求
-func (c*MainController) post(){
+//该方法用于处理post类型的请求FormValue(("ase"))
+
+//	if name != "admin" && age!="21"{
+//func (c*MainController) post(){
+//	//解析前端提交的json格式的数据
+//	var person models.Person
+//	dataBytes, err :=ioutil.ReadAll(c.Ctx.Request.Body)
+//	if  err !=nil{
+//		c.Ctx.WriteString("数据接受错误，请重试")
+//		return
+//	}
+//	err = json.Unmarshal(dataBytes,&person)
+//	if  err !=nil{
+//		c.Ctx.WriteString("数据接收错误，请重试")
+//		return
+//	}
+//	fmt.Println("姓名",person.Name)
+//	fmt.Println("年龄",person.Age)
+//	fmt.Println("性别",person.Sex)
+//	c.Ctx.WriteString("数据解析成功")
+//
+//}
+func (c *MainController) Post(){
 	//解析前端提交的json格式的数据
 	var person models.Person
 	dataBytes, err :=ioutil.ReadAll(c.Ctx.Request.Body)
 	if  err !=nil{
-		c.Ctx.WriteString("数据接受错误，请重试")
-		return
+	c.Ctx.WriteString("数据接收错误，请重试")
+	return
 	}
 	err = json.Unmarshal(dataBytes,&person)
 	if  err !=nil{
-		c.Ctx.WriteString("数据接受错误，请重试")
+		c.Ctx.WriteString("数据解析错误，请重试")
 		return
 	}
-	fmt.Println("姓名",person.Name)
-	fmt.Println("年龄",person.Age)
-	fmt.Println("性别",person.Sex)
+	fmt.Println("姓名", person.Name)
+	fmt.Println("生日", person.Birthday)
+	fmt.Println("地址", person.Address)
+	fmt.Println("昵称", person.Nick)
 	c.Ctx.WriteString("数据解析成功")
-
 }
